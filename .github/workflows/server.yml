@@ -15,7 +15,7 @@ jobs:
           distribution: temurin
           java-version: '21'
 
-      - name: Baixar NeoForge
+      - name: Baixar NeoForge 1.21.1
         run: |
           wget -O neoforge-installer.jar \
           https://maven.neoforged.net/releases/net/neoforged/neoforge/21.1.231/neoforge-21.1.231-installer.jar
@@ -39,4 +39,5 @@ jobs:
       - name: Iniciar servidor
         working-directory: server
         run: |
-          java -Xms2G -Xmx6G -jar neoforge-21.1.231.jar nogui
+          chmod +x run.sh
+          ./run.sh
