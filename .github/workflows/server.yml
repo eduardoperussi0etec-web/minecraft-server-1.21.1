@@ -15,9 +15,10 @@ jobs:
           distribution: temurin
           java-version: '21'
 
-      - name: Baixar NeoForge 1.21.1
+      - name: Baixar NeoForge
         run: |
-          wget -O neoforge-installer.jar https://maven.neoforged.net/releases/net/neoforged/neoforge/21.1.231/neoforge-21.1.231-installer.jar
+          wget -O neoforge-installer.jar \
+          https://maven.neoforged.net/releases/net/neoforged/neoforge/21.1.231/neoforge-21.1.231-installer.jar
 
       - name: Instalar NeoForge
         run: |
@@ -30,16 +31,10 @@ jobs:
         run: |
           echo "eula=true" > eula.txt
 
-      - name: Criar pasta de mods
-        working-directory: server
+      - name: Copiar mods
         run: |
-          mkdir -p mods
-
-      - name: Copiar mods do repositório
-        run: |
-          if [ -d "mods" ]; then
-            cp mods/*.jar server/mods/ 2>/dev/null || true
-          fi
+          mkdir -p server/mods
+          cp mods/*.jar server/mods/ 2>/dev/null || true
 
       - name: Iniciar servidor
         working-directory: server
